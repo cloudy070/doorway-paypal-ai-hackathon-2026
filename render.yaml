@@ -1,0 +1,138 @@
+# PREPARED CONFIGURATION ONLY — creates paid resources if an operator applies it.
+# Do not apply before the licence, budget, credentials, and access gates in
+# docs/DEPLOYMENT.md are satisfied. No deployment or account action is implied.
+# Schema: https://render.com/schema/render.yaml.json (checked 2026-10-23).
+previews:
+  generation: "off"
+
+services:
+  - type: web
+    name: doorway-web
+    runtime: docker
+    region: frankfurt
+    plan: 0.5c-512mb
+    numInstances: 1
+    dockerfilePath: ./Dockerfile
+    dockerContext: .
+    autoDeployTrigger: "off"
+    healthCheckPath: /api/status
+    maxShutdownDelaySeconds: 60
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: PORT
+        value: "10000"
+      # Enter the actual canonical HTTPS origin, with no trailing slash.
+      - key: APP_URL
+        sync: false
+      - key: DATABASE_URL
+        fromDatabase:
+          name: doorway-postgres
+          property: connectionString
+      - key: CHECKOUT_ACCESS_SECRET
+        generateValue: true
+      - key: RECONCILE_SECRET
+        generateValue: true
+      # One stable Ed25519 PKCS#8 PEM; literal \n sequences are accepted by app.
+      - key: RECEIPT_PRIVATE_KEY
+        sync: false
+      - key: PAYPAL_CLIENT_ID
+        sync: false
+      - key: PAYPAL_CLIENT_SECRET
+        sync: false
+      - key: PAYPAL_MERCHANT_ID
+        sync: false
+      - key: PAYPAL_WEBHOOK_ID
+        sync: false
+      - key: ANTHROPIC_API_KEY
+        sync: false
+      - key: ANTHROPIC_MODEL
+        value: claude-sonnet-4-6
+      # These two values are the only custom Docker build arguments declared.
+      - key: NEXT_PUBLIC_AG_STUDIO_LICENSE_KEY
+        sync: false
+      - key: DOORWAY_PUBLIC_HOSTING_APPROVED
+        sync: false
+
+  - type: worker
+    name: doorway-reconcile
+    runtime: docker
+    region: frankfurt
+    plan: 0.5c-512mb
+    numInstances: 1
+    dockerfilePath: ./Dockerfile
+    dockerContext: .
+    dockerCommand: node node_modules/tsx/dist/cli.mjs scripts/worker.ts
+    autoDeployTrigger: "off"
+    maxShutdownDelaySeconds: 300
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: DATABASE_URL
+        fromDatabase:
+          name: doorway-postgres
+          property: connectionString
+      # Reference the web service's authoritative values; never regenerate a
+      # separate signing key, checkout secret, payee, or public callback origin.
+      - key: APP_URL
+        fromService:
+          type: web
+          name: doorway-web
+          envVarKey: APP_URL
+      - key: CHECKOUT_ACCESS_SECRET
+        fromService:
+          type: web
+          name: doorway-web
+          envVarKey: CHECKOUT_ACCESS_SECRET
+      - key: RECONCILE_SECRET
+        fromService:
+          type: web
+          name: doorway-web
+          envVarKey: RECONCILE_SECRET
+      - key: RECEIPT_PRIVATE_KEY
+        fromService:
+          type: web
+          name: doorway-web
+          envVarKey: RECEIPT_PRIVATE_KEY
+      - key: PAYPAL_CLIENT_ID
+        fromService:
+          type: web
+          name: doorway-web
+          envVarKey: PAYPAL_CLIENT_ID
+      - key: PAYPAL_CLIENT_SECRET
+        fromService:
+          type: web
+          name: doorway-web
+          envVarKey: PAYPAL_CLIENT_SECRET
+      - key: PAYPAL_MERCHANT_ID
+        fromService:
+          type: web
+          name: doorway-web
+          envVarKey: PAYPAL_MERCHANT_ID
+      - key: PAYPAL_WEBHOOK_ID
+        fromService:
+          type: web
+          name: doorway-web
+          envVarKey: PAYPAL_WEBHOOK_ID
+      - key: NEXT_PUBLIC_AG_STUDIO_LICENSE_KEY
+        fromService:
+          type: web
+          name: doorway-web
+          envVarKey: NEXT_PUBLIC_AG_STUDIO_LICENSE_KEY
+      - key: DOORWAY_PUBLIC_HOSTING_APPROVED
+        fromService:
+          type: web
+          name: doorway-web
+          envVarKey: DOORWAY_PUBLIC_HOSTING_APPROVED
+
+databases:
+  - name: doorway-postgres
+    region: frankfurt
+    plan: 0.5c-1g
+    postgresMajorVersion: "17"
+    databaseName: doorway
+    user: doorway
+    diskSizeGB: 1
+    storageAutoscalingEnabled: false
+    # Use private connectivity only; no public database address allow-list.
+    ipAllowList: []

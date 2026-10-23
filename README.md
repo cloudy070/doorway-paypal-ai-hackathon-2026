@@ -4,7 +4,7 @@ Owner-reviewed stores for connected shopping agents. Doorway imports a public me
 
 **Development build, not submission-ready.** Local fixtures are fictional. Live AI, human-approved PayPal purchase, real webhook, hosted acceptance, unfamiliar-user testing and video/submission artifacts still require external access. See [completion audit](docs/COMPLETION_AUDIT.md) and [plan](docs/PLAN_EN.md). No conversion, revenue or speed improvement is claimed.
 
-Public source: https://github.com/cloudy070/doorway-paypal-ai-hackathon-2026 . The connected GitHub app publishes the source snapshot. The original local Git history is preserved in `source-history.bundle`, including the protocol commit before measurements. After cloning, import those original evidence commits before the claim check:
+Public source: [GitHub repository](https://github.com/cloudy070/doorway-paypal-ai-hackathon-2026). The connected GitHub app publishes the source snapshot. The original local Git history is preserved in `source-history.bundle`, including the protocol commit before measurements. After cloning, import those original evidence commits before the claim check:
 
 ```sh
 git fetch ./source-history.bundle refs/heads/master:refs/remotes/doorway-evidence/master
@@ -46,6 +46,8 @@ Restart development after changing secrets. The UI status checks presence, not v
 
 The gateway is pinned to `https://api-m.sandbox.paypal.com`; there is no live-money switch. Human PayPal approval remains a human action. Unknown outcomes retain the same durable operation and idempotency key; do not create another payment to resolve uncertainty. Retry is conservatively blocked outside six hours. Refund supports one exact owner-confirmed full or partial refund per checkout; additional partial-refund sequences are outside this pilot.
 
+An isolated capture-crash CLI is prepared at `scripts/live-recovery.ts`. It requires a separate explicitly named test database, genuine sandbox configuration and an existing human-approved uncaptured order. The [reviewer guide](docs/REVIEWER.md#recovery-and-negative-cases) gives the isolation and approval-record procedure. Its process-boundary regression test uses injected external HTTP; the real PayPal run remains unexecuted.
+
 ## MCP
 
 Endpoint: `/api/mcp/SHOP_SLUG`. Official SDK1.32.2, stateless Streamable HTTP. Tools: `get_store`, `search_products`, `check_availability`, `create_cart`, `start_checkout`. A published/verified approved store is required even for tool discovery. Price, shop tenant, inventory, discounts and payee are server-owned. No capture/refund/publish tools exist. start_checkout returns a capability-protected browser URL for human approval.
@@ -55,6 +57,8 @@ pnpm exec tsx scripts/mcp-smoke.ts http://127.0.0.1:3000/api/mcp/SHOP_SLUG
 ```
 
 This real HTTP client smoke stops after cart creation. It proves neither AI reasoning nor a completed payment. Compatibility claims apply only to the clients actually tested.
+
+The published storefront also offers a bounded Anthropic shopper using the official MCP Client over this HTTP endpoint. Preparing a checkout requires the buyer's explicit option and a cart made in the same run. It hands approval to the human; it has no capture, refund or publication tool. Without server AI configuration it returns an explicit503. Actual model acceptance has not been recorded.
 
 ## Checks and evidence
 
@@ -72,7 +76,7 @@ Evidence protocol/cases are in bench/. Keep every failure and labeled rerun; bin
 
 ## Build and deployment
 
-`pnpm build` then `pnpm start` runs locally. The default server binds loopback; a deployment platform must explicitly set an appropriate bind address, HTTPS reverse proxy, APP_URL, managed PostgreSQL and stable server secrets. Run the reconciliation worker separately. Do not deploy evaluation-only commercial dependencies until rights are confirmed. [Reviewer guide](docs/REVIEWER.md) lists the actual end-to-end acceptance and access needs.
+`pnpm build` then `pnpm start` runs locally. The default server binds loopback; a deployment platform must explicitly set an appropriate bind address, HTTPS reverse proxy, APP_URL, managed PostgreSQL and stable server secrets. Run the reconciliation worker separately. [Deployment instructions](docs/DEPLOYMENT.md) describe the prepared container/hosting configuration and its unverified external gates. Do not deploy evaluation-only commercial dependencies until rights are confirmed. [Reviewer guide](docs/REVIEWER.md) lists the actual end-to-end acceptance and access needs.
 
 ## Limits
 

@@ -5,6 +5,7 @@ node_modules/
 !.env.example
 *.tsbuildinfo
 coverage/
+work/
 *.log
 bench/runs/*
 !bench/runs/.gitkeep

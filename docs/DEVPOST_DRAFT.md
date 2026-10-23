@@ -51,7 +51,7 @@ Next, supply lawful provider access, run one consented merchant/source through t
 
 |Field|Current value|
 |---|---|
-|Public repository|NOT CREATED|
+|Public repository|https://github.com/cloudy070/doorway-paypal-ai-hackathon-2026|
 |Working demo / complete executable access|Local instructions exist; hosted reviewer service NOT PROVISIONED|
 |Public YouTube demonstration|NOT RECORDED OR UPLOADED|
 |Team and authorized representative|HUMAN CONFIRMATION REQUIRED|

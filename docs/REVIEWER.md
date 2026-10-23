@@ -1,6 +1,6 @@
 # Reviewer instructions — development draft
 
-**Current status: local development build; live provider acceptance and judging access are not provisioned.** No hosted URL, public repository URL or video link exists in this package yet. These instructions distinguish what can be checked now from the full path that still requires configured server services and human sandbox approval.
+**Current status: public source with verified local builds; live provider acceptance and judging access are not provisioned.** The [public repository](https://github.com/cloudy070/doorway-paypal-ai-hackathon-2026) is available. No hosted URL or video link exists yet. These instructions distinguish what can be checked now from the full path that still requires configured server services and human sandbox approval.
 
 ## Run a local review
 
@@ -42,7 +42,13 @@ Record every attempt, including failed attempts and reruns, according to [bench/
 
 First run `pnpm test`; deterministic SQL/external-boundary tests exercise concurrent start/capture, last-unit stock, expired approval hold, lost create/capture/refund response, pending/mismatch, receipt alteration, webhook forgery/replay and a recreated worker after the capture boundary. These are **LOCAL_VALIDATION with injected transport**, not live provider experiments.
 
-For live recovery, provision a dedicated isolated sandbox environment and an explicit, reviewed fault mechanism after the real capture is accepted but before local persistence. That live fault mechanism/run has not been recorded. Preserve the durable operation, request key and original order ID; suppress webhook delivery for that case; restart the worker and re-read the original provider record. Expected evidence is UNKNOWN followed by the authenticated paid observation, one capture, one stock commit and one receipt. Never create another order to resolve uncertainty. Clearly label `fault_injected=true`; do not disrupt a shared judging instance.
+For live recovery, scripts/live-recovery.ts prepares a dedicated isolated child-process harness; it has not been executed against PayPal. Require ISOLATED_SANDBOX=1, a distinct TEST_DATABASE_URL whose database name explicitly includes test/sandbox/recovery, configured sandbox app/payee and a stable receipt key. In a separate isolated app configuration prepare an existing checkout and actually approve its order as a human; do not complete its capture in the browser. Stop that isolated app/worker and suppress its webhook for this test. The CLI refuses primary-database reuse and never creates a new order.
+
+A real human must supply an existing private approval-attestation JSON file with actor_kind=HUMAN, role=sandbox_buyer, the actual approved order_id, confirmed=true and the actual recorded_at timestamp. The harness does not generate this file; an agent-generated statement is not human approval. Run `pnpm exec tsx scripts/live-recovery.ts --checkout EXISTING_CHECKOUT --approval-attestation PATH_TO_ACTUAL_HUMAN_RECORD` with the explicit isolation environment. The child exits86 after an authenticated successful capture response and before local payment persistence. The parent reopens the isolated database, exposes UNKNOWN and reconciles the original order with a fresh read-only service. It checks the same operation/key/order, one capture, one stock commit and one verified receipt.
+
+Private, redacted hash markers/results stay under .data/live-recovery. The script does not append benchmark PASS rows or replace the curated provider-read/human evidence required by the readiness gate. Never create another order to resolve an uncertain outcome. Clearly label fault_injected=true and inspect the actual live evidence before claiming this acceptance passed. Local process-boundary tests inject only the external HTTP transport and remain LOCAL_VALIDATION; do not disrupt a shared judging instance.
+
+If the post-crash authenticated read fails temporarily, keep the original marker and use the same checkout/isolation/actual-human record with `--resume-marker .data/live-recovery/ORIGINAL_RUN_ID/capture-boundary.json`. This resumes read-only reconciliation of CAPTURING/UNKNOWN/PENDING; it never launches another capture child. If PAID/receipt/SUCCEEDED was already saved before a final read or result-write failure, the same marker can verify it without downgrading payment state. A completed replay preserves the original result.json and returns ALREADY_RECORDED. An invalid or non-Ed25519 signing key is rejected before the capture process starts. Database URL checks are defensive guards; the operator must still establish genuinely separate infrastructure and stop other actors on that isolated test database.
 
 For the three-minute hold, delay approval beyond expiry before capture: the checkout must cancel/requote without capturing. After capture might have started, an UNKNOWN reservation must remain pinned until safe reconciliation. Other sales channels are not reserved.
 
@@ -67,7 +73,7 @@ The PostgreSQL smoke needs a separate TEST_DATABASE_URL and checks two real clie
 
 |Item|Value today|
 |---|---|
-|Public repository|NOT CREATED / URL NOT AVAILABLE|
+|Public repository|[Verified public source](https://github.com/cloudy070/doorway-paypal-ai-hackathon-2026); clean-clone and developer CI passed|
 |Hosted functional demo|NOT PROVISIONED|
 |Public YouTube video|NOT RECORDED OR UPLOADED|
 |Judge owner account and sandbox buyer instructions|NOT PROVISIONED|

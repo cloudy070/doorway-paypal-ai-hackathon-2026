@@ -1,0 +1,41 @@
+# Host-specific and generated files must never enter the Linux build context.
+node_modules
+.next
+.data
+.git
+.github
+.env
+.env.*
+!.env.example
+**/*.env
+**/*.env.*
+**/.env
+**/.env.*
+**/*.pem
+**/*.key
+**/*.p12
+**/*.pfx
+**/.DS_Store
+**/Thumbs.db
+**/*.log
+**/*.tsbuildinfo
+coverage
+playwright-report
+test-results
+work
+outputs
+source-history.bundle
+*.tar
+*.tar.gz
+*.zip
+
+# The image explicitly copies only app/runtime inputs. Keep reference material,
+# measurements, and tests out of the remote context as an additional boundary.
+docs
+bench
+tests
+claims.yaml
+README.md
+AGENTS.md
+vitest.config.ts
+render.yaml
