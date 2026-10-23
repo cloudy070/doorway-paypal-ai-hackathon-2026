@@ -1,0 +1,230 @@
+{
+  "schema": "doorway.evidence.v1",
+  "run_id": "E4-20261023220648795",
+  "experiment": "E4",
+  "case_id": "E4-D01",
+  "split": "dev",
+  "source": "LOCAL_VALIDATION",
+  "method": "REAL_HTTP_MCP",
+  "status": "PASS",
+  "fault_injected": false,
+  "rerun_of": null,
+  "started_at": "2026-10-23T22:06:48.795Z",
+  "completed_at": "2026-10-23T22:06:51.275Z",
+  "commit_sha": "3eddf117ba1a73e74bcee5f5fe367f2239d75a5f",
+  "metrics": [],
+  "proof": {
+    "kind": "mcp_http",
+    "endpoint": "http://127.0.0.1:3000/api/mcp/rosa-s-weekend-bakery-456873",
+    "client": {
+      "name": "@modelcontextprotocol/sdk",
+      "version": "1.32.2"
+    },
+    "transport": "STREAMABLE_HTTP",
+    "tools": [
+      "get_store",
+      "search_products",
+      "check_availability",
+      "create_cart",
+      "start_checkout"
+    ],
+    "payment_created": false
+  },
+  "runtime": {
+    "node": "v22.18.0",
+    "dependencies": {
+      "@anthropic-ai/sdk": "1.2.0",
+      "@electric-sql/pglite": "^0.3.14",
+      "@modelcontextprotocol/sdk": "1.32.2",
+      "ag-studio": "3.0.0",
+      "ag-studio-react": "3.0.0",
+      "cheerio": "^1.1.2",
+      "lucide-react": "^0.577.0",
+      "next": "16.4.3",
+      "pg": "^8.16.3",
+      "react": "^19.2.0",
+      "react-dom": "^19.2.0",
+      "yaml": "^2.8.0",
+      "zod": "^4.3.0"
+    }
+  },
+  "observations": {
+    "source": "LOCAL_VALIDATION",
+    "sdk": "@modelcontextprotocol/sdk",
+    "transport": "STREAMABLE_HTTP",
+    "endpoint": "http://127.0.0.1:3000/api/mcp/rosa-s-weekend-bakery-456873",
+    "observedAt": "2026-10-23T22:06:51.248Z",
+    "success": true,
+    "humanApprovalAttempted": false,
+    "paymentCreated": false,
+    "tools": [
+      "get_store",
+      "search_products",
+      "check_availability",
+      "create_cart",
+      "start_checkout"
+    ],
+    "steps": [
+      {
+        "tool": "get_store",
+        "result": {
+          "shop": {
+            "name": "Rosa’s Weekend Bakery",
+            "slug": "rosa-s-weekend-bakery-456873",
+            "currency": "USD"
+          },
+          "catalogVersion": 3,
+          "catalogSource": "SYNTHETIC",
+          "rules": {
+            "pickupDays": [
+              6
+            ],
+            "bulkDiscount": {
+              "percentOff": 10,
+              "minQuantity": 5
+            },
+            "leadTimeHours": 0,
+            "minOrderMinor": 0,
+            "returnsPolicy": "Contact the shop before requesting a refund.",
+            "deliveryPolicy": "Pickup only. Confirm the collection day with the shop.",
+            "maxQuantityPerLine": 20
+          },
+          "environment": "PAYPAL_SANDBOX",
+          "observationPolicy": {
+            "origin": "PUBLIC_MCP_REQUEST",
+            "limit": 500,
+            "notice": "Repeated public MCP probes may be counted separately. These are observed requests, not validated buyer demand, lost revenue or conversion estimates. At most 500 MCP observations are retained per shop; further probes are not recorded after that cap."
+          }
+        }
+      },
+      {
+        "tool": "search_products",
+        "result": {
+          "catalogVersion": 3,
+          "catalogSource": "SYNTHETIC",
+          "products": [
+            {
+              "id": "gluten-free-loaf",
+              "name": "Saturday gluten-free loaf",
+              "description": "A fictional bakery loaf for the sandbox demonstration. Saturday collection.",
+              "priceMinor": 650,
+              "currency": "USD",
+              "stock": 13,
+              "attributes": {
+                "dietary": [
+                  "gluten-free"
+                ]
+              },
+              "allowedAlternatives": []
+            },
+            {
+              "id": "sourdough",
+              "name": "Country sourdough",
+              "description": "Slow-fermented, golden crust. Fictional demonstration product.",
+              "priceMinor": 520,
+              "currency": "USD",
+              "stock": 18,
+              "attributes": {},
+              "allowedAlternatives": []
+            },
+            {
+              "id": "cinnamon-bun",
+              "name": "Cinnamon bun",
+              "description": "Brown sugar, cinnamon, soft dough. Fictional demonstration product.",
+              "priceMinor": 320,
+              "currency": "USD",
+              "stock": 24,
+              "attributes": {},
+              "allowedAlternatives": []
+            },
+            {
+              "id": "olive-focaccia",
+              "name": "Olive focaccia",
+              "description": "Olive oil and rosemary. Fictional demonstration product.",
+              "priceMinor": 490,
+              "currency": "USD",
+              "stock": 8,
+              "attributes": {},
+              "allowedAlternatives": []
+            }
+          ]
+        }
+      },
+      {
+        "tool": "check_availability",
+        "result": {
+          "available": true,
+          "catalogVersion": 3,
+          "catalogSource": "SYNTHETIC",
+          "lines": [
+            {
+              "productId": "gluten-free-loaf",
+              "name": "Saturday gluten-free loaf",
+              "quantity": 1,
+              "unitPriceMinor": 650,
+              "lineTotalMinor": 650
+            }
+          ],
+          "subtotalMinor": 650,
+          "discountMinor": 0,
+          "totalMinor": 650,
+          "currency": "USD",
+          "pickupDate": "2026-10-24",
+          "checkedRules": [
+            "published_catalog_version",
+            "confirmed_price_and_stock",
+            "pickup_day",
+            "lead_time",
+            "quantity_limit",
+            "minimum_order"
+          ],
+          "stockReserved": false,
+          "checkoutCapable": false
+        }
+      },
+      {
+        "tool": "create_cart",
+        "result": {
+          "cartId": "c12dbc53-9b78-42b4-a5e4-f5020346353c",
+          "quote": {
+            "id": "c12dbc53-9b78-42b4-a5e4-f5020346353c",
+            "shopId": "45687327-081c-4e92-bdf3-ff22b3561d3d",
+            "catalogId": "45687327-081c-4e92-bdf3-ff22b3561d3d:3",
+            "catalogVersion": 3,
+            "rulesVersion": 3,
+            "lines": [
+              {
+                "productId": "gluten-free-loaf",
+                "name": "Saturday gluten-free loaf",
+                "quantity": 1,
+                "unitPriceMinor": 650,
+                "lineTotalMinor": 650
+              }
+            ],
+            "subtotalMinor": 650,
+            "discountMinor": 0,
+            "totalMinor": 650,
+            "currency": "USD",
+            "pickupDate": "2026-10-24",
+            "createdAt": "2026-10-23T22:06:51.235Z",
+            "expiresAt": "2026-10-23T22:16:51.235Z",
+            "status": "QUOTED",
+            "checkedRules": [
+              "published_catalog_version",
+              "confirmed_price_and_stock",
+              "pickup_day",
+              "lead_time",
+              "quantity_limit",
+              "minimum_order"
+            ]
+          },
+          "stockReserved": false,
+          "paymentCreated": false
+        }
+      }
+    ]
+  },
+  "stdout": "{\n  \"source\": \"LOCAL_VALIDATION\",\n  \"sdk\": \"@modelcontextprotocol/sdk\",\n  \"transport\": \"STREAMABLE_HTTP\",\n  \"endpoint\": \"http://127.0.0.1:3000/api/mcp/rosa-s-weekend-bakery-456873\",\n  \"observedAt\": \"2026-10-23T22:06:51.248Z\",\n  \"success\": true,\n  \"humanApprovalAttempted\": false,\n  \"paymentCreated\": false,\n  \"tools\": [\n    \"get_store\",\n    \"search_products\",\n    \"check_availability\",\n    \"create_cart\",\n    \"start_checkout\"\n  ],\n  \"steps\": [\n    {\n      \"tool\": \"get_store\",\n      \"result\": {\n        \"shop\": {\n          \"name\": \"Rosa’s Weekend Bakery\",\n          \"slug\": \"rosa-s-weekend-bakery-456873\",\n          \"currency\": \"USD\"\n        },\n        \"catalogVersion\": 3,\n        \"catalogSource\": \"SYNTHETIC\",\n        \"rules\": {\n          \"pickupDays\": [\n            6\n          ],\n          \"bulkDiscount\": {\n            \"percentOff\": 10,\n            \"minQuantity\": 5\n          },\n          \"leadTimeHours\": 0,\n          \"minOrderMinor\": 0,\n          \"returnsPolicy\": \"Contact the shop before requesting a refund.\",\n          \"deliveryPolicy\": \"Pickup only. Confirm the collection day with the shop.\",\n          \"maxQuantityPerLine\": 20\n        },\n        \"environment\": \"PAYPAL_SANDBOX\",\n        \"observationPolicy\": {\n          \"origin\": \"PUBLIC_MCP_REQUEST\",\n          \"limit\": 500,\n          \"notice\": \"Repeated public MCP probes may be counted separately. These are observed requests, not validated buyer demand, lost revenue or conversion estimates. At most 500 MCP observations are retained per shop; further probes are not recorded after that cap.\"\n        }\n      }\n    },\n    {\n      \"tool\": \"search_products\",\n      \"result\": {\n        \"catalogVersion\": 3,\n        \"catalogSource\": \"SYNTHETIC\",\n        \"products\": [\n          {\n            \"id\": \"gluten-free-loaf\",\n            \"name\": \"Saturday gluten-free loaf\",\n            \"description\": \"A fictional bakery loaf for the sandbox demonstration. Saturday collection.\",\n            \"priceMinor\": 650,\n            \"currency\": \"USD\",\n            \"stock\": 13,\n            \"attributes\": {\n              \"dietary\": [\n                \"gluten-free\"\n              ]\n            },\n            \"allowedAlternatives\": []\n          },\n          {\n            \"id\": \"sourdough\",\n            \"name\": \"Country sourdough\",\n            \"description\": \"Slow-fermented, golden crust. Fictional demonstration product.\",\n            \"priceMinor\": 520,\n            \"currency\": \"USD\",\n            \"stock\": 18,\n            \"attributes\": {},\n            \"allowedAlternatives\": []\n          },\n          {\n            \"id\": \"cinnamon-bun\",\n            \"name\": \"Cinnamon bun\",\n            \"description\": \"Brown sugar, cinnamon, soft dough. Fictional demonstration product.\",\n            \"priceMinor\": 320,\n            \"currency\": \"USD\",\n            \"stock\": 24,\n            \"attributes\": {},\n            \"allowedAlternatives\": []\n          },\n          {\n            \"id\": \"olive-focaccia\",\n            \"name\": \"Olive focaccia\",\n            \"description\": \"Olive oil and rosemary. Fictional demonstration product.\",\n            \"priceMinor\": 490,\n            \"currency\": \"USD\",\n            \"stock\": 8,\n            \"attributes\": {},\n            \"allowedAlternatives\": []\n          }\n        ]\n      }\n    },\n    {\n      \"tool\": \"check_availability\",\n      \"result\": {\n        \"available\": true,\n        \"catalogVersion\": 3,\n        \"catalogSource\": \"SYNTHETIC\",\n        \"lines\": [\n          {\n            \"productId\": \"gluten-free-loaf\",\n            \"name\": \"Saturday gluten-free loaf\",\n            \"quantity\": 1,\n            \"unitPriceMinor\": 650,\n            \"lineTotalMinor\": 650\n          }\n        ],\n        \"subtotalMinor\": 650,\n        \"discountMinor\": 0,\n        \"totalMinor\": 650,\n        \"currency\": \"USD\",\n        \"pickupDate\": \"2026-10-24\",\n        \"checkedRules\": [\n          \"published_catalog_version\",\n          \"confirmed_price_and_stock\",\n          \"pickup_day\",\n          \"lead_time\",\n          \"quantity_limit\",\n          \"minimum_order\"\n        ],\n        \"stockReserved\": false,\n        \"checkoutCapable\": false\n      }\n    },\n    {\n      \"tool\": \"create_cart\",\n      \"result\": {\n        \"cartId\": \"c12dbc53-9b78-42b4-a5e4-f5020346353c\",\n        \"quote\": {\n          \"id\": \"c12dbc53-9b78-42b4-a5e4-f5020346353c\",\n          \"shopId\": \"45687327-081c-4e92-bdf3-ff22b3561d3d\",\n          \"catalogId\": \"45687327-081c-4e92-bdf3-ff22b3561d3d:3\",\n          \"catalogVersion\": 3,\n          \"rulesVersion\": 3,\n          \"lines\": [\n            {\n              \"productId\": \"gluten-free-loaf\",\n              \"name\": \"Saturday gluten-free loaf\",\n              \"quantity\": 1,\n              \"unitPriceMinor\": 650,\n              \"lineTotalMinor\": 650\n            }\n          ],\n          \"subtotalMinor\": 650,\n          \"discountMinor\": 0,\n          \"totalMinor\": 650,\n          \"currency\": \"USD\",\n          \"pickupDate\": \"2026-10-24\",\n          \"createdAt\": \"2026-10-23T22:06:51.235Z\",\n          \"expiresAt\": \"2026-10-23T22:16:51.235Z\",\n          \"status\": \"QUOTED\",\n          \"checkedRules\": [\n            \"published_catalog_version\",\n            \"confirmed_price_and_stock\",\n            \"pickup_day\",\n            \"lead_time\",\n            \"quantity_limit\",\n            \"minimum_order\"\n          ]\n        },\n        \"stockReserved\": false,\n        \"paymentCreated\": false\n      }\n    }\n  ]\n}\n",
+  "stderr": "",
+  "externalPaymentProven": false
+}

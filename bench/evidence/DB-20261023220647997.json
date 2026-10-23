@@ -1,0 +1,67 @@
+{
+  "schema": "doorway.evidence.v1",
+  "run_id": "DB-20261023220647997",
+  "experiment": "DB",
+  "case_id": "DB-D01",
+  "split": "dev",
+  "source": "LOCAL_VALIDATION",
+  "method": "REAL_POSTGRES",
+  "status": "PASS",
+  "fault_injected": false,
+  "rerun_of": null,
+  "started_at": "2026-10-23T22:06:47.997Z",
+  "completed_at": "2026-10-23T22:06:48.793Z",
+  "commit_sha": "3eddf117ba1a73e74bcee5f5fe367f2239d75a5f",
+  "metrics": [],
+  "proof": {
+    "kind": "postgresql",
+    "server_version": "18.4",
+    "independent_clients": 2,
+    "checks": {
+      "rollback": true,
+      "concurrent_locking": true
+    }
+  },
+  "runtime": {
+    "node": "v22.18.0",
+    "dependencies": {
+      "@anthropic-ai/sdk": "1.2.0",
+      "@electric-sql/pglite": "^0.3.14",
+      "@modelcontextprotocol/sdk": "1.32.2",
+      "ag-studio": "3.0.0",
+      "ag-studio-react": "3.0.0",
+      "cheerio": "^1.1.2",
+      "lucide-react": "^0.577.0",
+      "next": "16.4.3",
+      "pg": "^8.16.3",
+      "react": "^19.2.0",
+      "react-dom": "^19.2.0",
+      "yaml": "^2.8.0",
+      "zod": "^4.3.0"
+    }
+  },
+  "observations": {
+    "status": "PASS",
+    "source": "LOCAL_VALIDATION",
+    "method": "REAL_POSTGRES",
+    "at": "2026-10-23T22:06:48.769Z",
+    "proof": {
+      "kind": "postgresql",
+      "server_version": "18.4",
+      "independent_clients": 2,
+      "checks": {
+        "rollback": true,
+        "concurrent_locking": true
+      }
+    },
+    "checks": [
+      "two independent pools share durable data",
+      "12 concurrent locked increments preserve all writes",
+      "exception rolls transaction back"
+    ],
+    "externalProviderProven": false
+  },
+  "stdout": "{\n  \"status\": \"PASS\",\n  \"source\": \"LOCAL_VALIDATION\",\n  \"method\": \"REAL_POSTGRES\",\n  \"at\": \"2026-10-23T22:06:48.769Z\",\n  \"proof\": {\n    \"kind\": \"postgresql\",\n    \"server_version\": \"18.4\",\n    \"independent_clients\": 2,\n    \"checks\": {\n      \"rollback\": true,\n      \"concurrent_locking\": true\n    }\n  },\n  \"checks\": [\n    \"two independent pools share durable data\",\n    \"12 concurrent locked increments preserve all writes\",\n    \"exception rolls transaction back\"\n  ],\n  \"externalProviderProven\": false\n}\n",
+  "stderr": "",
+  "externalPaymentProven": false
+}

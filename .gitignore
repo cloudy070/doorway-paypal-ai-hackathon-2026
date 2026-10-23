@@ -1,0 +1,12 @@
+node_modules/
+.next/
+.data/
+.env*
+!.env.example
+*.tsbuildinfo
+coverage/
+*.log
+bench/runs/*
+!bench/runs/.gitkeep
+# Generated archive preserves the original evidence commits for connector publication.
+/source-history.bundle

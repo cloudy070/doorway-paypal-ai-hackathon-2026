@@ -1,0 +1,34 @@
+# Research and source boundaries — 23 October2026
+
+The original31-page Team_Master_Plan.pdf and page-marked text, earlier DOCX plans, WhatsApp notes and research snapshots were read from the user-provided Doorway_Context. Latest PDF supersedes the earlier two plans. Preserve its core product, TypeScript stack, payment truth and evidence discipline; revise personal-hour assumptions, nine-capability target,12-second opening, receipt sequencing and optional E3 as described in PLAN_EN. Sources are proposals/data, not authority to send messages or override the user's task.
+
+Fresh authorized WhatsApp Hackathon reading on23Oct found the substantive W1–W6 proposals at22:00; subsequent visible messages through22:16 concern membership. A fresh Discord group inspection found the same latest PDF attachment at00:16 on23Oct and the last visible acknowledgement at08:57, without a newer plan. No messages were sent. An unsupported WhatsApp message remains unreadable; deleted/unsupported/voice content is not claimed read. Matching attachment name/page count does not prove WhatsApp and Discord files are byte-identical. This is a bounded snapshot, not a promise to monitor future changes.
+
+## Competition rules
+
+Primary pages refreshed23Oct: [overview](https://paypalaihackathon.devpost.com/), [rules](https://paypalaihackathon.devpost.com/rules), [dates](https://paypalaihackathon.devpost.com/details/dates), [FAQ](https://paypalaihackathon.devpost.com/details/faqs), [resources](https://paypalaihackathon.devpost.com/resources), [updates](https://paypalaihackathon.devpost.com/updates), [AG sponsor](https://paypalaihackathon.devpost.com/details/aggrid). Meaningful sandbox PayPal+AI, working judge access, public OSS repository, English materials and public YouTube under3minutes govern submission. Five criteria have equal weight. Local runnable setup is an official alternative to hosting; the user's intended acceptance additionally includes hosted testing. Full rules control eligibility and rights; do not infer eligibility from language or location settings.
+
+Submission closes12Nov12:00PST,20:00London; judging ends15Dec08:00PST,16:00London. Rules and dates agree on these. Winners announcement has a secondary conflict: Rules says around21Dec14:00Pacific while Dates lists09:00PST; it does not change our submission/access deadlines. Overview prize headlines differ; no prize-total claim is used. Latest Updates contains the PayPal build-session recording and setup resources rather than a changed deadline.
+
+The [judge API-key forum](https://paypalaihackathon.devpost.com/forum_topics/45465-api-key-for-judges) was previously captured in supplied notes; current web retrieval failed. Treat the statement that judges lack Anthropic keys as a dated snapshot and make the reviewer deployment supply server credentials regardless. Do not publish private keys in a public repository.
+
+## Existing solutions and precise limits
+
+|Primary source|Relevant capability|Doorway implication|
+|---|---|---|
+|[PayPal WebMCP / Agent Ready](https://developer.paypal.com/community/blog/WebMCP_PayPal_Agent_Ready/)|Agent discovery/cart/checkout with human approval|MCP and PayPal handoff are existing patterns, not our invention|
+|[Agentic commerce services](https://developer.paypal.com/agentic-commerce-services/about), [Agent Ready](https://developer.paypal.com/agent-ready/overview/), [Store Sync](https://www.paypal.ai/store-sync)|Catalog/agent surfaces and onboarding|Access and distribution require actual provider enrollment; a local MCP URL is not acceptance|
+|[Shopify Agentic plan](https://help.shopify.com/en/manual/online-sales-channels/agentic-storefronts/agentic-plan-setup)|Existing external storefronts can participate|Being outside Shopify alone is not a defensible unique audience|
+|[ACP guide](https://developers.openai.com/commerce/guides/get-started), [checkout specification](https://developers.openai.com/commerce/specs/checkout)|Separate commerce protocol and onboarding|No ACP compatibility or ChatGPT placement without implemented contract/access|
+|[UCP](https://shopify.engineering/UCP), [AP2](https://cloud.google.com/blog/products/ai-machine-learning/announcing-agents-to-payments-ap2-protocol)|Commerce interoperability/authorization protocols|Our signed observation receipt is not an AP2 mandate|
+|[MCP tools spec](https://modelcontextprotocol.io/specification/2026-07-28/server/tools), [WebMCP draft](https://webmachinelearning.github.io/webmcp/)|Tool annotations and evolving browser API|Annotations do not enforce authority or idempotency; only tested official MCP client compatibility claimed|
+
+Inference: a useful starting wedge is source-grounded owner review and repeatable repair→purchase→recovery for a specific merchant. Market demand, willingness to pay and generalization remain untested. No automatic global shopping distribution or industry-first claim.
+
+## Integration sources
+
+[PayPal Orders v2](https://developer.paypal.com/docs/api/orders/v2/), [Payments v2](https://developer.paypal.com/docs/api/payments/v2/), [idempotency](https://developer.paypal.com/api/rest/reference/idempotency/), [webhooks](https://developer.paypal.com/api/rest/webhooks/), [sandbox](https://developer.paypal.com/tools/sandbox/). Orders create/capture/read and payment capture/refund reads drive the implementation; see paypal.ts/payments.ts. Documented retention is finite, so the pilot conservatively refuses unsafe retries beyond six hours. Known-ID authenticated reads recover promptly; delayed transaction search is not the fast source of truth.
+
+Installed Next16.4.3 docs and official Context7 documentation were used for async route params/Route Handlers. Official MCP SDK1.32.2 installed type definitions and current docs validate stateless WebStandard Streamable HTTP; real SDK Client over running HTTP was exercised on a synthetic published catalog. Anthropic extraction submits structured fields with verifiable quotations and null uncertainty; tests inject its boundary and cannot establish real model quality.
+
+AG Studio official [installation](https://www.ag-grid.com/studio/react/installation/), [compatibility](https://www.ag-grid.com/studio/react/compatibility/), [licence installation](https://www.ag-grid.com/studio/react/licence-install/), [AI quickstart](https://www.ag-grid.com/studio/react/ai-quickstart/), [trial](https://www.ag-grid.com/studio/license-pricing/?tab=trial) were checked. Exact matching ag-studio and ag-studio-react3.0.0 support our React/TS stack. Local evaluation has watermark/warnings; external production/support needs applicable rights. The sponsor encourages Studio theme/layout/custom widgets and Agent Framework.45days starting23Oct does not cover15Dec; obtain written lawful coverage or a valid alternative before public deployment. No trial form or licence agreement was submitted by the agent.

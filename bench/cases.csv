@@ -1,0 +1,16 @@
+case_id,experiment,split,status,description,required,required_source,required_method,required_fault_injected
+E1-D01,E1,dev,NOT_RUN,Consented simple merchant catalog with frozen ground truth,true,LIVE_AI,AUTHENTICATED_HTTP,
+E1-D02,E1,dev,NOT_RUN,Missing and conflicting price stock policy fields,true,LIVE_AI,AUTHENTICATED_HTTP,
+E1-H01,E1,held_out,NOT_RUN,Unseen consented merchant source and human ground truth,true,LIVE_AI,AUTHENTICATED_HTTP,
+E1-H02,E1,held_out,NOT_RUN,Unseen source with explicitly unknown facts,true,LIVE_AI,AUTHENTICATED_HTTP,
+E2-D01,E2,dev,NOT_RUN,Ordinary storefront and agent same Saturday loaf purchase,true,LIVE_SANDBOX,,
+E2-H01,E2,held_out,NOT_RUN,Human supplied unseen intent same completed capture point,true,LIVE_SANDBOX,,
+E4-D01,E4,dev,NOT_RUN,Official SDK over HTTP initialize list search quote cart,true,,REAL_HTTP_MCP,
+DB-D01,DB,dev,NOT_RUN,Real PostgreSQL rollback and two-client concurrent increment,true,LOCAL_VALIDATION,REAL_POSTGRES,
+E5-H01,E5,held_out,NOT_RUN,Reserved for unseen human supplied untrusted text,true,LOCAL_VALIDATION,,
+E5-H02,E5,held_out,NOT_RUN,Reserved for unseen human supplied boundary case,true,LOCAL_VALIDATION,,
+E6-D01,E6,dev,NOT_RUN,Live human-approved sandbox capture authenticated read receipt,true,LIVE_SANDBOX,,
+E6-D02,E6,dev,NOT_RUN,Live webhook signature and replay followed by authenticated read,true,LIVE_SANDBOX,,
+E6-D03,E6,dev,NOT_RUN,Isolated crash after live capture recovery same operation,true,LIVE_SANDBOX,,true
+E6-D04,E6,dev,NOT_RUN,Live exact owner-confirmed refund authenticated read and safe retry,true,LIVE_SANDBOX,,
+HOST-D01,HOST,dev,NOT_RUN,Hosted unfamiliar consenting human end-to-end walkthrough,true,LOCAL_VALIDATION,HUMAN_BROWSER,

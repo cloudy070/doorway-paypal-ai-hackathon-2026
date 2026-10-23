@@ -1,0 +1,45 @@
+{
+  "name": "doorway",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "next dev --hostname 127.0.0.1",
+    "build": "next build",
+    "start": "next start --hostname 127.0.0.1",
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run",
+    "db:setup": "tsx scripts/setup-db.ts",
+    "seed": "tsx scripts/seed.ts",
+    "worker": "tsx scripts/worker.ts",
+    "claims:check": "tsx scripts/check-claims.ts"
+  },
+  "dependencies": {
+    "@anthropic-ai/sdk": "1.2.0",
+    "@electric-sql/pglite": "^0.3.14",
+    "@modelcontextprotocol/sdk": "1.32.2",
+    "ag-studio": "3.0.0",
+    "ag-studio-react": "3.0.0",
+    "cheerio": "^1.1.2",
+    "lucide-react": "^0.577.0",
+    "next": "16.4.3",
+    "pg": "^8.16.3",
+    "react": "^19.2.0",
+    "react-dom": "^19.2.0",
+    "yaml": "^2.8.0",
+    "zod": "^4.3.0"
+  },
+  "devDependencies": {
+    "@types/node": "^24.10.0",
+    "@types/pg": "^8.15.6",
+    "@types/react": "^19.2.0",
+    "@types/react-dom": "^19.2.0",
+    "tsx": "^4.21.0",
+    "typescript": "^5.9.3",
+    "vitest": "^4.0.0"
+  },
+  "engines": {
+    "node": ">=22"
+  },
+  "packageManager": "pnpm@9.15.9"
+}

@@ -1,0 +1,13 @@
+version: 1
+readiness: NOT_READY
+claims: []
+required_evidence:
+  - {experiment: E1, source: LIVE_AI}
+  - {experiment: E2, source: LIVE_SANDBOX}
+  - {experiment: E4, method: REAL_HTTP_MCP}
+  - {experiment: DB, method: REAL_POSTGRES}
+  - {experiment: E6, case_id: E6-D01, source: LIVE_SANDBOX}
+  - {experiment: E6, case_id: E6-D02, source: LIVE_SANDBOX}
+  - {experiment: E6, case_id: E6-D03, source: LIVE_SANDBOX}
+  - {experiment: E6, case_id: E6-D04, source: LIVE_SANDBOX}
+  - {experiment: HOST, method: HUMAN_BROWSER}
