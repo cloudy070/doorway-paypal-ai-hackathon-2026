@@ -1,6 +1,6 @@
 # Doorway — Devpost draft
 
-**DRAFT — NOT READY TO SUBMIT.** The text below describes implemented local behavior and the intended demonstration. It must retain these limitations until actual live evidence exists. No hosted URL, public code URL, video URL or human eligibility confirmation is available. Do not paste an unqualified completed-project claim into Devpost.
+**DRAFT — NOT READY TO SUBMIT.** The text below describes implemented local behavior and the intended demonstration. It must retain these limitations until actual live evidence exists. The [public source repository](https://github.com/cloudy070/doorway-paypal-ai-hackathon-2026) is available. No hosted URL, video URL or human eligibility confirmation is available. Do not paste an unqualified completed-project claim into Devpost.
 
 **Project name:** Doorway
 **Tagline:** Help a small shop turn reviewed catalog data into a human-approved, verifiable agent checkout.

@@ -319,6 +319,21 @@ describe("readiness gate rejects plausible false proof", () => {
     expect(
       f.result().errors.some((error) => error.includes("Mandatory case")),
     ).toBe(true);
+    for (const id of ["E2-D02", "E2-H02"]) {
+      const absentRun = fixture();
+      absentRun.config.required_evidence = [];
+      absentRun.rows = absentRun.rows.filter((row) => row.case_id !== id);
+      expect(absentRun.result().errors).toContain(
+        `Missing completed required case: ${id}.`,
+      );
+      const erasedCase = fixture();
+      erasedCase.config.required_evidence = [];
+      erasedCase.cases = erasedCase.cases.filter((item) => item.case_id !== id);
+      erasedCase.rows = erasedCase.rows.filter((row) => row.case_id !== id);
+      expect(erasedCase.result().errors).toContain(
+        `Mandatory case ${id} missing or disabled.`,
+      );
+    }
   });
   it.each(["FAIL", "NOT_RUN"])(
     "a %s row and artifact cannot satisfy a required case or metric",

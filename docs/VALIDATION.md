@@ -25,7 +25,7 @@ Formal local records, created only after the frozen commit:
 - [DB-20261023220647997](../bench/evidence/DB-20261023220647997.json): REAL_POSTGRES, two independent client pools, twelve concurrent locked increments preserved, rollback restored prior value. Source LOCAL_VALIDATION; no external provider claim.
 - [E4-20261023220648795](../bench/evidence/E4-20261023220648795.json): official MCP SDK1.32.2 Client over real Streamable HTTP to the running app; initialize/list, store/search, availability and persisted cart succeeded. The catalog was SYNTHETIC. It did not call start_checkout, approve, capture or invoke a model.
 
-Register rows bind exact artifact SHA-256 and commit. `pnpm claims:check` accepts these two local artifacts but exits1 because thirteen mandatory cases and corresponding live/hosted evidence remain missing. No numerical performance, revenue, accuracy, conversion or merchant-demand claims are enabled. The structural gate cannot independently establish provider authenticity or human consent from metadata; manual acceptance is still required.
+Register rows bind exact artifact SHA-256 and commit. `pnpm claims:check` accepts these two local artifacts but currently exits1 because fifteen mandatory cases and corresponding live/hosted evidence remain missing, after the pre-E2 manifest correction below. No numerical performance, revenue, accuracy, conversion or merchant-demand claims are enabled. The structural gate cannot independently establish provider authenticity or human consent from metadata; manual acceptance is still required.
 
 ## Browser observations
 
@@ -52,3 +52,9 @@ Full source was published to the public [GitHub repository](https://github.com/c
 GitHub Actions [run40032444676](https://github.com/cloudy070/doorway-paypal-ai-hackathon-2026/actions/runs/40032444676), using Linux and Node24, independently passed the developer job: frozen install, typecheck,149tests and production build. Its separate readiness job failed on the thirteen missing mandatory cases. The overall workflow is therefore red. Logs confirmed the failure was missing live/hosted acceptance, rather than missing historical commit objects or invalid local evidence hashes.
 
 [COMPLETION_AUDIT.md](COMPLETION_AUDIT.md) lists external live-service, human, licence, reviewer-access and submission requirements. Public source availability closes the repository requirement; it does not establish these remaining results. Full objective completion is not asserted.
+
+## Final evidence-manifest consistency amendment
+
+Public commit57a3985 (local67efae7) subsequently passed153tests, TypeScript and production build in Linux [run40034511178](https://github.com/cloudy070/doorway-paypal-ai-hackathon-2026/actions/runs/40034511178). Its developer job succeeded; readiness failed on the then-thirteen missing cases. The public checkout and imported original bundle matched all local text source exactly.
+
+An independent completion audit then found a stale sentence about the absent public code URL and an E2 planning mismatch: protocol specified two development plus two held-out tasks, but manifest declared only one of each. The sentence was corrected. E2-D02/H02 are now explicit mandatory NOT_RUN cases, preserving the intended sample scope; no payload, human annotation or result was fabricated. Existing adversarial tests verify that deleting either new case/run still fails even when YAML requirements are erased. Targeted readiness tests14/14 and TypeScript passed. The real readiness command still fails, now listing fifteen missing cases out of seventeen mandatory cases; the same two historical local artifacts are retained unchanged. Future E2 execution must use the amended committed protocol and actual independent human-held-out definitions.
